@@ -1,3 +1,8 @@
+#' Writes dat as csv-file
+#'
+#' @param dat a data.table
+#' @return -
+
 write_dwd_csv <- function(dat){
   filename = paste0("station",dat[,head(station_id,1)],".csv")
   write.csv(dat, file=paste0(getwd(),"/",filename), row.names = FALSE)

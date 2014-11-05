@@ -72,7 +72,7 @@ row.names(dat) <- c("station_id","air_temperature", "cloudiness",
 ```
 
 All the meta-data like the station location we read by `read_dwd_meta_data(archive)`
-You can load it easily by `data(meta)`.
+You can load it easily by `data(meta_dwd)`.
 
 ## fread the data
 To read the data after saving it once you can use
