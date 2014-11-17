@@ -56,14 +56,17 @@ read_dwd_table <- function(file){
     dat
   }, finally = {}
   )
-  
-  dat <- data.table(dat$mess_datum, dat[,-2])
+  ind <- which(names(dat) == "mess_datum")
+  dat <- data.table(dat$mess_datum, dat[,-ind])
   closeAllConnections()
   unlink(temp)
   dat
 }
 
 clean_dwd_table <- function(station, dat){
+  dat[[which(station$type == "solar")]][, sonnenzenit := mean(sonnenzenit), 
+                                          by = list(idate, itime)]
+  
   multi_dat <- names(which(table(station$type)==2))
   to_be_deleted <- integer()
   for(type in multi_dat){
@@ -77,5 +80,6 @@ clean_dwd_table <- function(station, dat){
   for(i in to_be_deleted){
     dat[[i]] <- NULL
   }
+  
   return(dat)
 }

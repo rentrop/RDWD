@@ -128,16 +128,16 @@ colDef_rece_air_temperature <- function(){
 }
 
 colDef_solar <- function(){
-  colClasses <- c("integer", "DWDDaytime",
+  colClasses <- c("integer", "character",
                   "integer", "integer",
                   "double", "double",
                   "double", "double",
-                  "character", "NULL")
-  col.names <- c("station_id", "mess_datum",
+                  "DWDDaytime", "NULL")
+  col.names <- c("station_id", "mess_datum_woz",
                  "qualitaets_niveau_solar", "sonnenscheindauer",
                  "diffus_himmel_kw_j", "global_kw_j",
                  "athmosphaere_lw_j", "sonnenzenit",
-                 "mess_datum_woz", "NULL")
+                 "mess_datum", "NULL")
   return(list(colClasses = colClasses, col.names = col.names))
 }
 
