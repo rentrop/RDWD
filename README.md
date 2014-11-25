@@ -12,50 +12,14 @@ We are using `zipinfo` so you will need to install it. Also we use AWS S3 to sto
 
 ```r
 require(RDWD)
-url <- "ftp://ftp-cdc.dwd.de/pub/CDC/observations_germany/climate/hourly/"
-```
-
-## Get directories of the measurement-types
-
-```r
-folder <- dwd_dirlist(url)
-names(folder) = gsub("(.*?)/","",folder)
-# All directories except solar have 2 subdirectories: historical and recent
-type <- unlist(sapply(names(folder), function(x){
-  if (x=="solar") {
-    NA
-  } else {
-    c("historical","recent")
-  }
-}))
-names(type) <- gsub("\\d","",names(type))
-```
-
-
-## Creating comprehensive list of all zip-archive the DWD offers 
-
-```r
-archive <- mapply(dwd_parse_dirlist, 
-              folder[names(type)],
-              type,
-              names(type),
-              SIMPLIFY = FALSE)
-archive <- do.call(rbind, archive)
-```
-
-## cleaning up
-
-```r
-ind <- which(ls()=="archive")
-rm(list = ls()[-ind])
-gc()
+data(archives_dwd)
 ```
 
 ## Possible subsets:
 
 ```r
-archive <- archive[which(archive$station_id == 183),]
-# archive <- archive[which(archive$type == "cloudiness"),]
+archives_dwd <- archives_dwd[which(archives_dwd$station_id == 183),]
+# archives_dwd <- archives_dwd[which(archives_dwd$type == "cloudiness"),]
 ```
 
 ## Reading the data by station
@@ -64,11 +28,7 @@ specified in `write_dwd_csv`. If you want to write them somewhere else:
 please write your own write function. See `write_dwd_s3` to see how moving them to AWS S3 might work.
 
 ```r
-dat <- read_dwd_dat(archive, write_dwd_csv)
-cat(paste("Time:", Sys.time()),file="read_dwd_dat_log.txt",append=TRUE,sep="\n")
-row.names(dat) <- c("station_id","air_temperature", "cloudiness", 
-                    "precipitation", "soil_temperature", 
-                    "solar", "sun", "wind")
+dat <- read_dwd_dat(archives_dwd, write_dwd_csv, ...)
 ```
 
 All the meta-data like the station location we read by `read_dwd_meta_data(archive)`
