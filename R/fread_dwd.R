@@ -35,7 +35,7 @@ cp_s3_files <- function(file, dir_s3, loc_path){
 fread_s3 <- function(station_id, 
                      ids = TRUE, 
                      zip = TRUE,
-                     dir_s3 = "s3://dwd-oekoproj/", 
+                     dir_s3 = "dwd-oekoproj", 
                      loc_path = tempdir()){
   if (ids) station_id <- paste_station(station_id, zip = zip)
   
