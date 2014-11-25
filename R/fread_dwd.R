@@ -47,7 +47,7 @@ fread_s3 <- function(station_id,
   }
   if(any(ind)){
     loc_file <- paste0(loc_path, "/", station_id[ind])
-    if(zip) unzip(loc_file, exdir = loc_path)
+    if(zip) for(k in seq_along(loc_file)) unzip(loc_file[k], exdir = loc_path)
     dat <- lapply(sub(".tar.gz", ".csv", loc_file), fread_dwd)
     
     file.remove(loc_file)
