@@ -2,8 +2,8 @@
 \docType{data}
 \name{archives_dwd}
 \alias{archives_dwd}
-\title{All zip-archives of hourly data the DWD offers (as of 2014-10-11)}
-\format{A data frame with 6484 rows and 4 variables}
+\title{All zip-archives of hourly data the DWD offers (as of 2014-11-25)}
+\format{A data frame with 7372 rows and 4 variables}
 \usage{
 data(archives_dwd)
 }

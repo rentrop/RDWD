@@ -10,6 +10,7 @@ get_dwd_colDef <- function(historical="historical", type="wind"){
                    air_temperature = switch(historical, 
                                             historical = colDef_hist_air_temperature(),
                                             recent = colDef_rece_air_temperature()),
+                   pressure = colDef_pressure(),
                    solar = colDef_solar(),
                    meta = colDef_meta()            
   )
@@ -138,6 +139,13 @@ colDef_solar <- function(){
                  "diffus_himmel_kw_j", "global_kw_j",
                  "athmosphaere_lw_j", "sonnenzenit",
                  "mess_datum", "NULL")
+  return(list(colClasses = colClasses, col.names = col.names))
+}
+
+colDef_pressure <- function(){
+  colClasses <- c("integer", "DWDDate", "integer", "double", "NULL")
+  col.names <- c("station_id", "mess_datum", "qualitaets_niveau_pressure",
+                 "luftdruck_stationshoehe", "NULL")
   return(list(colClasses = colClasses, col.names = col.names))
 }
 
