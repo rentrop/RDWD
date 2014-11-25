@@ -22,7 +22,7 @@ write_dwd_s3 <- function(dat, zip = TRUE,
   write.csv(dat, file=paste0(getwd(),"/",filename,".csv"), row.names = FALSE)
   
   if (zip){
-    zip(paste0(getwd(),"/",filename,".tar.gz"), paste0(getwd(),"/",filename,".csv"))
+    zip(paste0(getwd(),"/",filename,".tar.gz"), paste0(filename,".csv"))
     file.remove(paste0(getwd(),"/",filename,".csv"))
     file = paste0(getwd(),"/",filename,".tar.gz")
   } else {
