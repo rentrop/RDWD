@@ -9,8 +9,7 @@
 #' data(archives_dwd)
 #' archives_dwd <- archives_dwd[which(archives_dwd$station_id == 183 & archives_dwd$type == "wind"),]
 #' read_dwd_dat(archives_dwd, write_dwd_csv, logging = FALSE)
-#' if(!file.exists("station183.csv")) error("station183.csv not found")
-#' file.remove("station183.csv")
+#' if(!file.remove("station183.csv")) stop("station183.csv not found")
 
 read_dwd_dat <- function(archive, write_station_dat, logging = TRUE, ...){
   types <- unique(archive$type)
@@ -38,9 +37,8 @@ read_dwd_dat <- function(archive, write_station_dat, logging = TRUE, ...){
     rm(dat)
     gc()
     if(logging) cat("", file="read_dwd_dat_log.txt",append=TRUE, sep="\n")
-    setNames(c(station[1,"station_id"],types %in% unique(station$type)),
-             c("station_id", types))
-  }, c(station_id = numeric(1), type = logical(length(types))))
+    c(station[1,"station_id"],types %in% unique(station$type))
+  }, setNames(c(numeric(1), logical(length(types))), c("station_id", types)))
   if(logging) {cat(paste("Time:", Sys.time()),file="read_dwd_dat_log.txt",
                append=TRUE,sep="\n")}
   res
