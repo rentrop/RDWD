@@ -17,7 +17,7 @@ write_dwd_csv <- function(dat){
 #' @return Nothing
 
 write_dwd_s3 <- function(dat, zip = TRUE, 
-                         dir_s3 = stop("plese privide s3 directory")){
+                         dir_s3 = stop("please provide s3 directory")){
   filename = paste0("station",dat[1,station_id])
   write.csv(dat, file=paste0(getwd(),"/",filename,".csv"), row.names = FALSE)
   
