@@ -43,4 +43,33 @@ To read the data after saving it once you can use
 ## Example of the data generated
 Can be found here https://raw.githubusercontent.com/rentrop/RDWD/master/data/station183.csv
 
+Load and see it
+
+
+
+
+
+```r
+URL <- "https://raw.githubusercontent.com/rentrop/RDWD/master/data/station284.csv"
+dest <- "station284.csv"
+download.file(URL, dest, method = "curl")
+DT <- fread_dwd(dest)
+invisible(file.remove(dest))
+knitr::kable(head(DT))
+```
+
+
+
+idate            itime   station_id   qualitaets_niveau_air_temperature   struktur_version_air_temperature   lufttemperatur   rel_feuchte
+-----------  ---------  -----------  ----------------------------------  ---------------------------------  ---------------  ------------
+1947-01-01    01:00:00          284                                   5                                 24             -7.2            96
+1947-01-01    02:00:00          284                                   5                                 24             -7.5            91
+1947-01-01    03:00:00          284                                   5                                 24             -7.8            92
+1947-01-01    04:00:00          284                                   5                                 24             -5.8            89
+1947-01-01    05:00:00          284                                   5                                 24             -5.8            89
+1947-01-01    06:00:00          284                                   5                                 24             -5.5            89
+
+
+
+
 [![Analytics](https://ga-beacon.appspot.com/UA-56469723-1/rentrop/RDWD)](https://github.com/igrigorik/ga-beacon)
