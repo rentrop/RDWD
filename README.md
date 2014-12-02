@@ -55,19 +55,25 @@ dest <- "station284.csv"
 download.file(URL, dest, method = "curl")
 DT <- fread_dwd(dest)
 invisible(file.remove(dest))
-knitr::kable(head(DT))
+head(DT)
 ```
 
-
-
-idate            itime   station_id   qualitaets_niveau_air_temperature   struktur_version_air_temperature   lufttemperatur   rel_feuchte
------------  ---------  -----------  ----------------------------------  ---------------------------------  ---------------  ------------
-1947-01-01    01:00:00          284                                   5                                 24             -7.2            96
-1947-01-01    02:00:00          284                                   5                                 24             -7.5            91
-1947-01-01    03:00:00          284                                   5                                 24             -7.8            92
-1947-01-01    04:00:00          284                                   5                                 24             -5.8            89
-1947-01-01    05:00:00          284                                   5                                 24             -5.8            89
-1947-01-01    06:00:00          284                                   5                                 24             -5.5            89
+```
+##         idate    itime station_id qualitaets_niveau_air_temperature
+## 1: 1947-01-01 01:00:00        284                                 5
+## 2: 1947-01-01 02:00:00        284                                 5
+## 3: 1947-01-01 03:00:00        284                                 5
+## 4: 1947-01-01 04:00:00        284                                 5
+## 5: 1947-01-01 05:00:00        284                                 5
+## 6: 1947-01-01 06:00:00        284                                 5
+##    struktur_version_air_temperature lufttemperatur rel_feuchte
+## 1:                               24           -7.2          96
+## 2:                               24           -7.5          91
+## 3:                               24           -7.8          92
+## 4:                               24           -5.8          89
+## 5:                               24           -5.8          89
+## 6:                               24           -5.5          89
+```
 
 
 
