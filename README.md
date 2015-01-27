@@ -41,7 +41,7 @@ To read the data after saving it once you can use
 * `fread_s3` wrapper around `fread_dwd` to pull data from S3 via the AWS CLI
 
 ## Example of the data generated
-Can be found here https://raw.githubusercontent.com/rentrop/RDWD/master/data/station183.csv
+Can be found here https://raw.githubusercontent.com/rentrop/RDWD/master/data/station284.csv
 
 Load and see it
 
